@@ -1,0 +1,89 @@
+
+---
+apiVersion: v1
+data:
+  config.yaml: |
+    listen_host: 0.0.0.0:8080
+    
+    evm:
+      5600:
+        endpoint: https://evocative-frosty-hill.bsc.quiknode.pro/ca682c8bf1e9e7c8981dd84da58c96eefe998882
+        support_debug: true
+    
+    sol:
+      50100: https://practical-cosmological-meme.solana-mainnet.quiknode.pro/06261eba3f2e921d77444957ddb5c41140925813
+    
+    
+    alert_config:
+      Interval: 60 #s
+      lark_bot_id: 71e2e02e-e657-49b9-8e33-9fcfb51a3ce4
+
+kind: ConfigMap
+metadata:
+  name: parse-transaction-service-config
+  namespace: transaction-analysis-service-dev-v2
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: transaction-analysis-service-dev-v2
+  name: parse-transaction-service
+  labels:
+    app: parse-transaction-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: parse-transaction-service
+  template:
+    metadata:
+      labels:
+        app: parse-transaction-service
+    spec:
+      containers:
+        - name: parse-transaction-service
+          image: {image}
+          args:
+            - service
+          imagePullPolicy: Always
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          volumeMounts:
+            - name: config
+              mountPath: /root/config.yaml
+              subPath: config.yaml
+          resources:
+            requests:
+              cpu: "0.5"  # 请求 500 毫核 CPU
+              memory: "512Mi" # 请求 512 MiB 内存
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: config
+          configMap:
+            name: parse-transaction-service-config
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: transaction-analysis-service-dev-v2
+  name: transaction-analysis-service-1948400-v2
+spec:
+  selector:
+    app: transaction-analysis-service-1948400-v2
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
