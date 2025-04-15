@@ -1,0 +1,19 @@
+listen_host: 127.0.0.1:8080
+
+evm:
+  50100:
+    endpoint: https://123.com/111
+    support_debug: true
+  100:
+    endpoint: https://123.com/1000
+    support_debug: false
+
+sol:
+  50100: https://123.com/111
+
+tron:
+  100: https://123.com/1000
+
+alert_config:
+  Interval: 60 #s
+  lark_bot_id: 1111
