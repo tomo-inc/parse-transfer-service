@@ -78,10 +78,10 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: transaction-analysis-service-dev-v2
-  name: transaction-analysis-service-1948400-v2
+  name: parse-transaction-service
 spec:
   selector:
-    app: transaction-analysis-service-1948400-v2
+    app: parse-transaction-service
   ports:
     - protocol: TCP
       port: 8080
