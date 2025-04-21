@@ -24,6 +24,5 @@ func (h *Handle) Router(engin *gin.Engine) {
 		c.Status(http.StatusOK)
 	})
 
-	v1 := engin.Group("/v1")
-	v1.GET("/tx_transfers/:chainId/:txHash", h.FetchTransfer)
+	engin.GET("/tx_transfers/:chainId/:txHash", h.FetchTransfer)
 }

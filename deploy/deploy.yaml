@@ -7,11 +7,18 @@ data:
     
     evm:
       5600:
-        endpoint: https://evocative-frosty-hill.bsc.quiknode.pro/ca682c8bf1e9e7c8981dd84da58c96eefe998882
+        endpoint: http://rpc-service.tomo-rpc-service-dev/v1/bsc
         support_debug: true
+      100:
+        endpoint: http://rpc-service.tomo-rpc-service-dev/v1/eth
+        support_debug: true
+      845300:
+        endpoint: http://rpc-service.tomo-rpc-service-dev/v1/base
+        support_debug: true        
+  
     
     sol:
-      50100: https://practical-cosmological-meme.solana-mainnet.quiknode.pro/06261eba3f2e921d77444957ddb5c41140925813
+      50100: http://rpc-service.tomo-rpc-service-dev/v1/solana
     
     
     alert_config:
