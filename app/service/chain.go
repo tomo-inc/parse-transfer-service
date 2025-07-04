@@ -17,21 +17,8 @@ type chainServiceImpl struct {
 }
 
 func NewChain(
-	EVMEndpoints map[string]EvmConfig,
-	SOlEndpoints map[string]string,
-	TRONEndpoints map[string]string,
+	chains map[string]chain.Parser,
 ) ChainService {
-	chains := make(map[string]chain.Parser)
-	for chainIndex, config := range EVMEndpoints {
-		chains[chainIndex] = chain.NewEvm(config.SupportDebug, config.Endpoint, chainIndex)
-	}
-	for chainIndex, endpoint := range SOlEndpoints {
-		chains[chainIndex] = chain.NewSolana(endpoint, chainIndex)
-	}
-	for chainIndex, endpoint := range TRONEndpoints {
-		chains[chainIndex] = chain.NewTron(endpoint, chainIndex)
-	}
-
 	return &chainServiceImpl{
 		chains: chains,
 	}

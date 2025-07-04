@@ -11,12 +11,17 @@ type EvmInfo struct {
 	SupportDebug bool   `mapstructure:"support_debug"`
 }
 
+type TronInfo struct {
+	Endpoint string `mapstructure:"endpoint"`
+	Token    string `mapstructure:"token"`
+}
+
 type Config struct {
-	ListenHost    string             `mapstructure:"listen_host"`
-	EVMEndpoints  map[string]EvmInfo `mapstructure:"evm"`
-	SOlEndpoints  map[string]string  `mapstructure:"sol"`
-	TRONEndpoints map[string]string  `mapstructure:"tron"`
-	AlertConfig   AlertConfig        `mapstructure:"alert_config"`
+	ListenHost    string              `mapstructure:"listen_host"`
+	EVMEndpoints  map[string]EvmInfo  `mapstructure:"evm"`
+	SOlEndpoints  map[string]string   `mapstructure:"sol"`
+	TRONEndpoints map[string]TronInfo `mapstructure:"tron"`
+	AlertConfig   AlertConfig         `mapstructure:"alert_config"`
 }
 
 type AlertConfig struct {

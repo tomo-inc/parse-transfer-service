@@ -12,7 +12,9 @@ sol:
   50100: https://123.com/111
 
 tron:
-  100: https://123.com/1000
+  1948400:
+    endpoint: https://123.com/111
+    token: aaa
 
 alert_config:
   Interval: 60 #s

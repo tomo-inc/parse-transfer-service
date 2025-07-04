@@ -32,9 +32,13 @@ func NewEvm(supportDebug bool, endpoint string, chainIndex string) *Evm {
 	if err != nil {
 		log.Error().Err(err).Msg("Failed to connect to Ethereum client")
 		bot.SendMsgWithRate(context.Background(), bot.Msg{
-			Title: "connect failed",
+			Title: "evm connect failed",
 			Level: bot.Error,
 			Data: []*bot.KeyValue{
+				{
+					Key:   "chain index",
+					Value: chainIndex,
+				},
 				{
 					Key:   "endpoint",
 					Value: endpoint,
