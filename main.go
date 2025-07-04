@@ -43,6 +43,6 @@ func setLogLevel() {
 	case "panic":
 		zerolog.SetGlobalLevel(zerolog.PanicLevel)
 	default:
-		zerolog.SetGlobalLevel(zerolog.Disabled)
+		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	}
 }

@@ -20,10 +20,14 @@ data:
     sol:
       50100: http://rpc-service.tomo-rpc-service-dev/v1/solana
     
+    tron:
+      1948400:
+        endpoint: evocative-frosty-hill.tron-mainnet.quiknode.pro:50051
+        token: ca682c8bf1e9e7c8981dd84da58c96eefe998882
     
     alert_config:
       Interval: 60 #s
-      lark_bot_id: 71e2e02e-e657-49b9-8e33-9fcfb51a3ce4
+      lark_bot_id: b101c873-67ed-43e3-b79b-6bd3eb1362de
 
 kind: ConfigMap
 metadata:
@@ -59,11 +63,11 @@ spec:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 3
-            periodSeconds: 3
+            initialDelaySeconds: 5
+            periodSeconds: 5
             timeoutSeconds: 5
             successThreshold: 1
-            failureThreshold: 3
+            failureThreshold: 5
           volumeMounts:
             - name: config
               mountPath: /root/config.yaml
